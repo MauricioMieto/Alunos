@@ -1,0 +1,225 @@
+﻿@page "/trabalho"
+
+<h1>Trabalho Tutorial Blazor</h1><br/>
+<h2>Trabalhar com Lista</h2><br/>
+<p><b>List: </b> Representa uma lista fortemente tipada de objetos que podem ser acessados por índice. 
+Fornece métodos para pesquisar, classificar e manipular listas. Podemos criar listas ordenadas usando <b>ol</b> e criar listas não ordenadas usando <b>ul</b>.</p>
+<br/>
+<p><b>For: </b> Quando você sabe exatamente quantas vezes deseja percorrer um bloco de código.</p>
+<br/>
+<p><b>Foreach: </b> A instrução foreach executa uma instrução ou um bloco de instruções para cada elemento em uma instância do tipo.</p>
+<br/>
+<p><b>Table: </b> É usado para criar uma tabela, podemos colocar informações da lista dentro dela.</p>
+<br/>
+<p><b>First: </b> Retorna o prmeiro elemento de uma lista.</p>
+<br/>
+<p><b>Where: </b> Retorna elementos que se adequam a condições.</p>
+<br/>
+
+<p>Vamos primeiro criar uma lista de frutas com preços usando List e adicionaremos alguns itens na lista:</p><br />
+	
+	List Fruta ListaFrutas = new List Fruta ();<br />
+	protected override void OnInitialized() {<br />
+	&emsp;Fruta La = new Fruta(){Nome = "Laranja", Preco = 1.66};	<br />	
+	&emsp;Fruta Ba = new Fruta(){Nome = "Banana", Preco = 5.00};<br />
+	&emsp;Fruta Ma = new Fruta(){Nome = "Maça", Preco = 7.89};<br />
+	&emsp;Fruta Mo = new Fruta(){Nome = "Morango", Preco = 14.20};<br />
+	&emsp;Fruta Pe = new Fruta(){Nome = "Pera", Preco = 8.89};<br />
+	&emsp;ListaFrutas.Add(La);<br />
+	&emsp;ListaFrutas.Add(Ba);<br />
+	&emsp;ListaFrutas.Add(Ma);<br />
+	&emsp;ListaFrutas.Add(Mo);<br />
+    &emsp;ListaFrutas.Add(Pe);<br />
+	&emsp;ListaFrutas.Add(Pe);<br />
+	}<br /><br />
+
+   <p>Agora podemos ver a lista de forma não ordenadas usando <b>ul</b> e percorrendo ela com <b>foreach</b>.</p>
+
+	&lt;ul&gt;<br/>
+	&emsp;foreach(var Fruta in ListaFrutas) {<br/>
+	&emsp;&emsp;&lt;li&gt; <br/>
+	&emsp;&emsp;&emsp;&lt;p&gt;<br />
+	&emsp;&emsp;&emsp;&emsp;&lt;b&gt; Nome: &lt;/b&gt;<br/>
+	&emsp;&emsp;&emsp;&emsp;&#64;Fruta.Nome &lt;br/&gt;<br/>
+	&emsp;&emsp;&emsp;&emsp;&lt;b&gt; Preco: &lt;/b&gt;<br/>
+	&emsp;&emsp;&emsp;&emsp;&#64;Fruta.Preco &lt;br/&gt;<br/>
+	&emsp;&emsp;&emsp;&lt;/p&gt;<br />
+	&emsp;&emsp;&lt;/li&gt; <br/>
+	&emsp;}<br/>
+	&lt;/ul&gt;<br/><br/>
+
+<ul>
+	@foreach(var Fruta in ListaFrutas)
+{
+	<li>
+		<p>
+		<b>Nome: </b>
+		@Fruta.Nome<br/>
+		<b>Preco: </b>
+		@Fruta.Preco<br/>
+		</p>
+		</li>
+}
+</ul>
+<p>Podemos deixar a lista ordenada com <b>ol</b> e acessar ela com <b>for</b>.</p><br/>
+
+&lt;ol&gt; <br/>
+&emsp;for (var i = 0; i &lt; ListaFrutas.Count; i++) {<br/>
+&emsp;&emsp;&lt;li&gt;<br/>
+&emsp;&emsp;&emsp;&lt;p&gt;<br/>
+&emsp;&emsp;&emsp;&emsp;&lt;b&gt;Nome:&lt;/b&gt<br/>
+&emsp;&emsp;&emsp;&emsp;&#64;ListaFrutas[i].Nome&lt;br/&gt<br/>
+&emsp;&emsp;&emsp;&emsp;&lt;b&gt;Preco:&lt;/b&gt<br/>
+&emsp;&emsp;&emsp;&emsp;&#64;ListaFrutas[i].Preco&lt;br/&gt<br/>
+&emsp;&emsp;&emsp;&lt;/p&gt;<br/>
+&emsp;&emsp;&lt;/li&gt;<br/>
+&emsp;}<br/>
+&lt;/ol&gt;<br/><br/>
+
+<ol>
+	@for(var i = 0; i < ListaFrutas.Count; i++)
+{
+	<li>	
+        <p>
+			<b>Nome: </b>
+            @ListaFrutas[i].Nome<br />
+			<b>Preco: </b>
+            @ListaFrutas[i].Preco<br />
+        </p>
+		</li>
+}
+</ol>
+<p>Tambem podemos montar uma tabela usando a lista que criamos, usando <b>Table</b>.
+</p>
+
+&lt;table border = "1"&gt; <br />
+&emsp;&lt;tr&gt;<br /> 
+&emsp;&emsp;&lt;th&gt;Nome&lt;/th&gt;<br />
+&emsp;&emsp;&lt;th&gt;Preço&lt;/th&gt;<br />
+&emsp;&lt;/tr&gt;<br />
+&emsp;foreach(var Fruta in ListaFrutas) {<br />
+&emsp;&emsp;&lt;tr&gt;<br />
+&emsp;&emsp;&emsp;&lt;td&gt; &#64;Fruta.Nome &lt;/td&gt;<br />
+&emsp;&emsp;&emsp;&lt;td&gt; &#64;Fruta.Preco &lt;/td&gt;<br />
+&emsp;&emsp;&lt;/tr&gt;<br />
+&emsp;}<br />
+&lt;/table&gt;<br /><br />
+
+<table border = "1">
+	<tr>
+		<th>Nome</th>
+		<th>Preço</th>
+	</tr>
+	@foreach(var Fruta in ListaFrutas)
+	{
+		<tr>
+			<td>@Fruta.Nome</td>
+			<td>@Fruta.Preco</td>
+		</tr>}
+</table>
+<br/>
+
+<p>Esse é um exemplo do método <b>First</b>:</p>
+&lt;p&gt;Nome da primeira fruta da lista: &#064;ListaFrutas.First().Nome&lt;/p&gt;<br/><br/>
+<p>Nome da primeira fruta da lista: @ListaFrutas.First().Nome</p>
+<br/>
+
+<p>Esse é um exemplo do método <b>Where</b>:</p>
+
+<p>Lista de frutas onde o preço é maior que 7: </p>
+<p>ListaFrutas.Where(fruta => fruta.Preco > 7), <br/>sendo fruta um objeto para 
+ser usado como comparação de cada elemento da lista, onde a condição é que o preço
+seja maior do que 7</p>
+
+@if (ListaFrutas.Where(fruta => fruta.Preco > 7).Count() > 0) {
+	var precosMaisAltos = ListaFrutas.Where(fruta => fruta.Preco > 7).ToList();
+	foreach(var p in precosMaisAltos){
+		<p>@p.Nome, @p.Preco</p>
+	}
+}
+<br/>
+
+					@code {
+	public class Fruta 
+	{
+		public string Nome {get; set;}
+		public double Preco {get; set;}
+	}
+	List<Fruta> ListaFrutas = new List<Fruta>();
+	protected override void OnInitialized()
+	{
+					Fruta La = new Fruta()
+					{Nome = "Laranja", Preco = 1.66};		
+					Fruta Ba = new Fruta()
+					{Nome = "Banana", Preco = 5.00};
+					Fruta Ma = new Fruta()
+					{Nome = "Maçã", Preco = 7.89};
+					Fruta Mo = new Fruta()
+					{Nome = "Morango", Preco = 14.20};
+					Fruta Pe = new Fruta()
+					{Nome = "Pera", Preco = 8.89};
+					ListaFrutas.Add(La);
+					ListaFrutas.Add(Ba);
+					ListaFrutas.Add(Ma);
+					ListaFrutas.Add(Mo);
+					ListaFrutas.Add(Pe);
+	}
+	}
+	@*<h2>Trabalhando com CRUD</h2>*@
+	@*<p><b>Listar Objeto:</b>  </p> *@
+	<!--
+<div class="form-group"><a class="btn btn-info" href="categoria/cadastro"> Nova Categoria</a></div> 
+List<Categoria> Categorias = new List<Categoria>(); 
+ protected override async Task OnInitializedAsync(){ Categorias = await repositorio.Get();}
+	-->
+		@*<p><b>Deletar Objeto:</b>  </p> *@
+	<!--
+    private async Task DeletarItem(int Id)
+    {await repositorio.Delete(Id); Categorias = await repositorio.Get();}
+	<button class="btn btn-danger" @onclick="@(() => DeletarItem(item.Id))">Deletar</button>
+	-->
+		@*<p><b>Cadastrar Objeto:</b>  </p>*@ 
+	<!--
+    private Categoria categoria = new Categoria();
+    private async Task Create()
+    {await repository.Add(categoria); navigationManager.NavigateTo("categoria");}
+	-->
+		@*<p><b>Editar Objeto:</b>   </p> *@
+	<!--
+	@if (categoria is not null){<FormCategoria Categoria="categoria" OnValidSubmit="Edit" />}
+	@code {
+    [Parameter] public int CategoriaId { get; set; }
+    private Categoria categoria;
+    protected override async Task OnInitializedAsync()
+    {try{categoria = await  repository.Get(CategoriaId);}
+	catch (Exception ex){Console.WriteLine("Erro X: " + ex.Message);}}
+    private async Task Edit(){await repository.Update(categoria); navigationManager.NavigateTo("categoria");}
+	-->
+		@*<p><b> Formulário:</b>  </p> *@
+	<!--
+<EditForm Model="Categoria" OnValidSubmit="OnValidSubmit" >
+    <DataAnnotationsValidator /><div class="form-group"><label>Nome:</label>
+<div><InputText class="form-control" @bind-Value="@Categoria.Nome" /><ValidationMessage For="(() =>Categoria.Nome)" /></div></div>
+    <button class="btn btn-success" type="submit">Salvar</button></EditForm>
+@code {[Parameter] public Categoria Categoria { get; set; }
+[Parameter] public EventCallback OnValidSubmit { get; set; }}
+	-->
+			@*<p><b> Injeção de Dependência:</b>  </p> *@
+	<!--
+    public class Program
+    { public static async Task Main(string[] args)
+        {var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            builder.RootComponents.Add<App>("#app");
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            //Configuracao Manual de Servicos
+            ConfigureServices(builder.Services); await builder.Build().RunAsync();}
+        //Registro dos Servicos Que serao utilizados via injecao de dependencia nos componentes/paginas RAZOR
+        private static void ConfigureServices(IServiceCollection services)
+        {services.AddScoped<IHttpService, HttpService>();
+            //ATivar Repositorio Verdadeiro (no SGBD)
+            //services.AddTransient<IRepository<Categoria>, CategoriaRepository>();
+            //services.AddTransient<IRepository<Produto>, ProdutoRepository>();
+            //ATIVAR Repositorio em Memoria (Fake)
+            services.AddSingleton<IRepository<Categoria>, RepositoryInMemoryCategoria>();
+            services.AddSingleton<IRepository<Produto>, RepositoryInMemoryProduto>();}}
+	-->
